@@ -5,20 +5,26 @@ const jwt = require('jsonwebtoken');
 const SECRET = "marketplace_secret"; // .env me store karna chahiye ideally
 
 exports.register = async (req, res) => {
-  const { name, email, password, role } = req.body;
-
-  if(email==="admin@gmail.com" && password==="123456")role="ADMIN";
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const user = new User({ name, email, password: hashedPassword, role });
-
   try {
+    let { name, email, password, role } = req.body;
+
+    // ✅ Allow admin shortcut
+    if (email === "admin@gmail.com" && password === "123456") {
+      role = "ADMIN";
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ name, email, password: hashedPassword, role });
+
     await user.save();
     res.status(201).json({ message: "User registered" });
+
   } catch (err) {
-    res.status(400).json({ error: "Registration failed", details: err });
+    console.error("❌ Register error:", err);
+    res.status(500).json({ error: "Registration failed", details: err.message });
   }
 };
+
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
