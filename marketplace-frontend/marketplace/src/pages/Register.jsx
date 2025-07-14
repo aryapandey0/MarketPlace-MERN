@@ -4,6 +4,7 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../redux/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,13 @@ const Register = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const navigate=useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(registerUser(formData));
+    alert("registration successful..👍")
+    navigate("/")
   };
 
   return (

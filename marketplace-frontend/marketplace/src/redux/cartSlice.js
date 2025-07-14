@@ -12,8 +12,10 @@ const cartSlice = createSlice({
       const existing = state.cartItems.find(i => i._id === item._id);
       if (existing) {
         existing.qty += 1;
+        alert("item added to cart")
       } else {
         state.cartItems.push({ ...item, qty: 1 });
+          alert("item added to cart")
       }
       state.total += item.price;
     },

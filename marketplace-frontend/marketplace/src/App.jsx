@@ -8,6 +8,7 @@ import Cart from './pages/Cart'
  import AddProduct from './components/AddProduct';
 import ProtectedRoute from './components/ProtectedRoute'
 import MyOrders from './components/Myorders'
+import AllUsers from './pages/Users'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -36,6 +37,12 @@ function App() {
     </ProtectedRoute>
   }
 />
+<Route
+  path="/users"
+  element={<AllUsers />
+  }
+/>
+
 
         <Route  path="/" element={<Login />} />
          <Route  path="/home" element={<HomePage />} />

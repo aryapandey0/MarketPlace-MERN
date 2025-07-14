@@ -77,6 +77,17 @@ const Navbar = () => {
              <Link to="/my-orders" style={{ marginLeft: 10, textDecoration:"none"}}>My Orders</Link>
              </div>
           )}
+
+          {user?.role === "ADMIN" && (
+            <div>
+            <Button component={Link} to="/users" color="primary">
+              
+              ALL-Users
+            </Button>
+     
+             </div>
+          )}
+
         </Stack>
 
       </Toolbar>

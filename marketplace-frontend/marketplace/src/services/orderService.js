@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = 'http://localhost:5000/api/orders';
+const API_URL = "https://marketplace-mern-me3i.onrender.com/api/orders";
 
 export const placeOrder = async (items, total, token) => {
   const res = await axios.post(`${API}/place`, { items, total }, {
