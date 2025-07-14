@@ -47,3 +47,14 @@ exports.login = async (req, res) => {
     }
   });
 };
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (err) {
+    console.error("❌ Failed to fetch users:", err);
+    res.status(500).json({ error: "Failed to fetch users" });
+  }
+};
+
